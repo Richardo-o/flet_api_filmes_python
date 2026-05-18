@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Catálogo de Filmes</title>
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+
+  <section class="min-h-screen flex items-center justify-center px-6">
+
+    <div class="max-w-5xl text-center">
+
+      <h1 class="text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+        🎬 Catálogo de Filmes
+      </h1>
+
+      <p class="text-slate-300 text-xl leading-relaxed mb-10">
+        Sistema completo desenvolvido com
+        Flask + Flet + Tailwind CSS.
+        A aplicação permite listar e cadastrar filmes
+        consumindo endpoints REST documentados com Swagger.
+      </p>
+
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+
+        <a href="#sobre"
+          class="bg-blue-600 hover:bg-blue-700 transition px-8 py-4 rounded-2xl font-bold shadow-lg">
+          Sobre o Projeto
+        </a>
+
+        <a href="#execucao"
+          class="border border-slate-600 hover:bg-slate-800 transition px-8 py-4 rounded-2xl font-bold">
+          Como Executar
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="sobre" class="py-24 px-6 bg-slate-900">
+
+    <div class="max-w-6xl mx-auto">
+
+      <h2 class="text-4xl font-bold mb-14 text-center">
+        🚀 Tecnologias Utilizadas
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+
+        <div class="bg-slate-800 p-8 rounded-3xl shadow-xl hover:scale-105 transition">
+
+          <div class="text-5xl mb-5">🐍</div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Flask Backend
+          </h3>
+
+          <p class="text-slate-300">
+            API REST construída com Flask utilizando Blueprints,
+            Swagger e validação de dados com Pydantic.
+          </p>
+
+        </div>
+
+        <div class="bg-slate-800 p-8 rounded-3xl shadow-xl hover:scale-105 transition">
+
+          <div class="text-5xl mb-5">🖥️</div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Flet Frontend
+          </h3>
+
+          <p class="text-slate-300">
+            Interface desktop moderna em Python utilizando Flet
+            consumindo os endpoints da API.
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-slate-800 p-8 rounded-3xl shadow-xl hover:scale-105 transition">
+
+          <div class="text-5xl mb-5">🎨</div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Tailwind CSS
+          </h3>
+
+          <p class="text-slate-300">
+            Landing page estilizada utilizando Tailwind CSS
+            com layout responsivo e moderno.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="py-24 px-6">
+
+    <div class="max-w-5xl mx-auto text-center">
+
+      <h2 class="text-4xl font-bold mb-14">
+        📋 Funcionalidades
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <div class="bg-slate-900 p-8 rounded-3xl">
+          <h3 class="text-2xl font-bold mb-4 text-blue-400">
+            ✔ Listagem de Filmes
+          </h3>
+
+          <p class="text-slate-300">
+            Os filmes cadastrados são consumidos através
+            de endpoints GET da API Flask.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-8 rounded-3xl">
+          <h3 class="text-2xl font-bold mb-4 text-cyan-400">
+            ✔ Cadastro de Filmes
+          </h3>
+
+          <p class="text-slate-300">
+            Formulário integrado ao endpoint POST
+            utilizando validação com Pydantic.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="execucao" class="py-24 px-6 bg-slate-900">
+
+    <div class="max-w-4xl mx-auto">
+
+      <h2 class="text-4xl font-bold mb-12 text-center">
+        ⚙️ Como Executar
+      </h2>
+
+      <div class="bg-slate-950 rounded-3xl p-8 border border-slate-800">
+
+<pre class="text-green-400 overflow-x-auto">
+# Clonar repositório
+
+git clone https://github.com/Richardo-o/flet_api_filmes_python.git
+
+# Instalar dependências
+
+pip install flask
+pip install flask-restx
+pip install flask-cors
+pip install pydantic
+pip install flet
+pip install requests
+
+# Executar backend
+
+python app.py
+
+# Executar frontend
+
+python main.py
+</pre>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer class="py-10 text-center border-t border-slate-800">
+
+    <p class="text-slate-400">
+      Projeto desenvolvido para atividade acadêmica utilizando
+      Flask, Flet e Tailwind CSS.
+    </p>
+
+  </footer>
+
+</body>
+</html>

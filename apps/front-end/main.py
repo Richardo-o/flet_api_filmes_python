@@ -6,35 +6,32 @@ API_URL = "http://127.0.0.1:5000/filmes"
 
 def main(page: ft.Page):
 
-    # =========================
-    # CONFIGURAÇÕES DA PÁGINA
-    # =========================
     page.title = "Sistema de Filmes"
     page.theme_mode = ft.ThemeMode.DARK
+    page.bgcolor = "#0f172a"
     page.scroll = "auto"
     page.window_width = 500
-    page.window_height = 700
+    page.window_height = 800
+    page.padding = 20
 
-    # =========================
-    # COMPONENTES
-    # =========================
-    lista_filmes = ft.Column()
+    lista_filmes = ft.Column(spacing=15)
 
     nome_input = ft.TextField(
         label="Nome do Filme",
+        border_radius=12,
+        filled=True,
         width=400
     )
 
     genero_input = ft.TextField(
         label="Gênero",
+        border_radius=12,
+        filled=True,
         width=400
     )
 
-    mensagem = ft.Text("")
+    mensagem = ft.Text(color="white")
 
-    # =========================
-    # FUNÇÃO LISTAR FILMES
-    # =========================
     def carregar_filmes():
 
         lista_filmes.controls.clear()
@@ -42,26 +39,29 @@ def main(page: ft.Page):
         try:
 
             resposta = requests.get(API_URL)
-
             filmes = resposta.json()
 
             for filme in filmes:
 
-                card = ft.Card(
-                    content=ft.Container(
-                        padding=15,
-                        content=ft.Column([
-                            ft.Text(
-                                filme["nome"],
-                                size=20,
-                                weight=ft.FontWeight.BOLD
-                            ),
+                card = ft.Container(
+                    bgcolor="#1e293b",
+                    border_radius=20,
+                    padding=20,
+                    animate=300,
+                    content=ft.Column([
+                        ft.Text(
+                            filme["nome"],
+                            size=22,
+                            weight=ft.FontWeight.BOLD,
+                            color="white"
+                        ),
 
-                            ft.Text(
-                                f'Gênero: {filme["genero"]}'
-                            )
-                        ])
-                    )
+                        ft.Text(
+                            f'{filme["genero"]}',
+                            color="#cbd5e1",
+                            size=16
+                        )
+                    ])
                 )
 
                 lista_filmes.controls.append(card)
@@ -70,12 +70,9 @@ def main(page: ft.Page):
 
         except Exception as erro:
 
-            mensagem.value = f"Erro ao carregar filmes: {erro}"
+            mensagem.value = f"Erro: {erro}"
             page.update()
 
-    # =========================
-    # FUNÇÃO CADASTRAR FILME
-    # =========================
     def cadastrar_filme(e):
 
         dados = {
@@ -85,14 +82,12 @@ def main(page: ft.Page):
 
         try:
 
-            resposta = requests.post(
-                API_URL,
-                json=dados
-            )
+            resposta = requests.post(API_URL, json=dados)
 
             if resposta.status_code == 201:
 
-                mensagem.value = "✅ Filme cadastrado com sucesso!"
+                mensagem.value = "✅ Filme cadastrado!"
+                mensagem.color = "green"
 
                 nome_input.value = ""
                 genero_input.value = ""
@@ -102,69 +97,82 @@ def main(page: ft.Page):
             else:
 
                 mensagem.value = "❌ Erro ao cadastrar"
+                mensagem.color = "red"
 
             page.update()
 
         except Exception as erro:
 
             mensagem.value = f"Erro: {erro}"
-
+            mensagem.color = "red"
             page.update()
 
-    # =========================
-    # CARREGAR FILMES
-    # =========================
     carregar_filmes()
 
-    # =========================
-    # BOTÃO
-    # =========================
     botao = ft.ElevatedButton(
         "Cadastrar Filme",
-        on_click=cadastrar_filme,
-        width=400
+        width=400,
+        height=50,
+        bgcolor="#2563eb",
+        color="white",
+        style=ft.ButtonStyle(
+            shape=ft.RoundedRectangleBorder(radius=12)
+        ),
+        on_click=cadastrar_filme
     )
 
-    # =========================
-    # TELA
-    # =========================
     page.add(
 
-        ft.Text(
-            "🎬 Catálogo de Filmes",
-            size=30,
-            weight=ft.FontWeight.BOLD
-        ),
+        ft.Container(
+            padding=20,
+            border_radius=25,
+            bgcolor="#111827",
 
-        ft.Text(
-            "Sistema utilizando Flask + Flet",
-            size=16
-        ),
+            content=ft.Column([
 
-        ft.Divider(),
+                ft.Text(
+                    "🎬 Catálogo de Filmes",
+                    size=32,
+                    weight=ft.FontWeight.BOLD,
+                    color="white"
+                ),
 
-        ft.Text(
-            "📋 Lista de Filmes",
-            size=25,
-            weight=ft.FontWeight.BOLD
-        ),
+                ft.Text(
+                    "Sistema utilizando Flask + Flet",
+                    size=16,
+                    color="#94a3b8"
+                ),
 
-        lista_filmes,
+                ft.Divider(color="#334155"),
 
-        ft.Divider(),
+                ft.Text(
+                    "Lista de Filmes",
+                    size=24,
+                    weight=ft.FontWeight.BOLD,
+                    color="white"
+                ),
 
-        ft.Text(
-            "➕ Cadastrar Filme",
-            size=25,
-            weight=ft.FontWeight.BOLD
-        ),
+                lista_filmes,
 
-        nome_input,
-        genero_input,
+                ft.Divider(color="#334155"),
 
-        botao,
+                ft.Text(
+                    "➕ Cadastrar Filme",
+                    size=24,
+                    weight=ft.FontWeight.BOLD,
+                    color="white"
+                ),
 
-        mensagem
+                nome_input,
+                genero_input,
+
+                botao,
+
+                mensagem
+
+            ],
+            spacing=20)
+        )
     )
 
 
