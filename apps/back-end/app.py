@@ -1,8 +1,10 @@
 from flask import Flask, request
 from flask_restx import Api, Resource, fields
 from pydantic import BaseModel
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) 
 
 app.json.ensure_ascii = False
 

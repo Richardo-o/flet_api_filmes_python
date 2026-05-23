@@ -175,5 +175,4 @@ def main(page: ft.Page):
         )
     )
 
-
-ft.app(target=main)
+ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8550)
